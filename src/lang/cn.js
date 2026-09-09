@@ -1,5 +1,6 @@
 const Splash = {
   changelog: [
+    '|2026.09.09|v2.4.4|Add 驯兽师职业图标与i18n文本.',
     '|2026.02.22|v2.4.3|Add 超时空辉夜姬!|',
     '|2026.02.12|v2.4.2|Add 在右下角添加快捷操作按钮.|',
     '|2025.07.04|v2.4.1|Adj 让自定义昵称在隐藏ID的情况下也生效.|',
@@ -67,7 +68,6 @@ export default {
   // basic
   cn: '简体中文',
   en: 'English',
-  kr: '한국어',
   damage: '输出',
   healing: '治疗',
   tanking: '承伤',
@@ -248,6 +248,7 @@ export default {
   'role.sge': '贤者',
   'role.vpr': '蝰蛇剑士',
   'role.pct': '绘灵法师',
+  'role.bst': '驯兽师',
   'role.chocobo': '陆行鸟',
   'role.limitbreak': '极限技',
   // encounter

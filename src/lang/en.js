@@ -1,5 +1,6 @@
 const Splash = {
   changelog: [
+    '|2026.09.09|v2.4.4|Add Job icon and i18n for Beastmaster.',
     '|2026.02.22|v2.4.3|Add Cosmic Princess Kaguya!|',
     '|2026.02.12|v2.4.2|Add Add quick action button in bottom right corner.|',
     '|2025.07.04|v2.4.1|Adj Make nickname still avaliable while hiding IDs.|',
@@ -67,7 +68,6 @@ export default {
   // basic
   cn: '简体中文',
   en: 'English',
-  kr: '한국어',
   damage: 'Damage',
   healing: 'Healing',
   tanking: 'Tanking',
@@ -248,6 +248,7 @@ export default {
   'role.sge': 'Sage',
   'role.vpr': 'Viper',
   'role.pct': 'Pictomancer',
+  'role.bst': 'Beastmaster',
   'role.chocobo': 'Chocobo',
   'role.limitbreak': 'Limit Break',
   // encounter

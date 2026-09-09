@@ -19,6 +19,7 @@ export default {
   rpr: 'dps',
   vpr: 'dps',
   pct: 'dps',
+  bst: 'dps',
   ast: 'heal',
   cnj: 'heal',
   whm: 'heal',
