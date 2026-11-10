@@ -1,5 +1,4 @@
 # CanisMinor ACT
-
 [![](https://img.shields.io/badge/Works%20with-OverlayPlugin-green.svg)](https://github.com/OverlayPlugin/OverlayPlugin)
 
 `ACT` `OverlayPlugin` `FFXIV` `React` `Redux`
@@ -10,18 +9,6 @@
 安装依赖: ```yarn install``` 或 ```npm install```  
 运行开发环境: ```yarn dev``` 或 ```npm run dev```  
 编译发行版: ```yarn build``` 或 ```npm run build```  
-
-## 安装
-
-**OverlayPlugin：**
-
-- 下载最新版`OverlayPlugin`: [🔗 Latest](https://github.com/OverlayPlugin/OverlayPlugin/releases)
-- DPS 统计美化插件 > DPS 统计（MiniParser）> 模板路径
-
-```sh
-# 拷贝下面的地址至模板路径
-https://overlay.diemoe.net/cmskin
-```
 
 ## 更新说明
 
