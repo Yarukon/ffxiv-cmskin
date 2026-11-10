@@ -4,7 +4,7 @@
 
 `ACT` `OverlayPlugin` `FFXIV` `React` `Redux`
 
-**FFXIV CanisMinor ActSkin (Forked by NewMoe-Tech):**
+**FFXIV CanisMinor ActSkin**
 
 ## 如何调试/编译
 安装依赖: ```yarn install``` 或 ```npm install```  
