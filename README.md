@@ -1,11 +1,10 @@
 # CanisMinor ACT
 
-[![](https://img.shields.io/github/license/NewMoe-Technology/ffxiv-cmskin.svg)](https://github.com/NewMoe-Technology/ffxiv-cmskin/blob/master/LICENSE)
 [![](https://img.shields.io/badge/Works%20with-OverlayPlugin-green.svg)](https://github.com/OverlayPlugin/OverlayPlugin)
 
 `ACT` `OverlayPlugin` `FFXIV` `React` `Redux`
 
-**FFXIV CanisMinor ActSkin (Forked by NewMoe-Tech):** https://overlay.diemoe.net/cmskin
+**FFXIV CanisMinor ActSkin (Forked by NewMoe-Tech):**
 
 ## 如何调试/编译
 安装依赖: ```yarn install``` 或 ```npm install```  
