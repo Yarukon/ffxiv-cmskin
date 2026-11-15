@@ -102,6 +102,18 @@
   box-shadow: 0 -1px 0 $c-bg-dark, inset 0 -1px 0 $c-bg-light;
 }
 
+@keyframes yachiyoRise {
+  to {
+    transform: translateY(calc(-1 * var(--tile-h)));
+  }
+}
+
+@keyframes yachiyoSwim {
+  to {
+    transform: translateX(calc(-1 * var(--tile-w)));
+  }
+}
+
 @keyframes flip24fps {
   0% {
     transform: scaleX(1);
@@ -231,6 +243,92 @@
       background: #2e3339aa;
       z-index: 2;
       pointer-events: none;
+    }
+
+    &.yachiyo {
+      --zoom: 1;
+
+      @media (max-width: 1400px) { --zoom: 0.8; }
+      @media (max-width: 1024px) { --zoom: 0.6; }
+
+      // Source art is 1920px wide; drawn at half scale before zoom
+      --band-h: calc(45px * var(--zoom));
+      --band-w: calc(48px * var(--zoom));
+      --tile-w: calc(960px * var(--zoom));
+      --tile-h: calc(450px * var(--zoom));
+
+      background: #83ded5;
+    }
+
+    .yachiyo_scene {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      border-radius: inherit;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    // Layers are one tile larger than the view and shift by exactly one tile, so the loop is seamless
+    .yachiyo_bubbles,
+    .yachiyo_fishes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-size: var(--tile-w) var(--tile-h);
+      will-change: transform;
+    }
+
+    .yachiyo_bubbles {
+      width: 100%;
+      height: calc(100% + var(--tile-h));
+      background-image: url('img/yachiyo/bg-bubbles.webp');
+      animation: yachiyoRise 40s linear infinite;
+    }
+
+    .yachiyo_fishes {
+      width: calc(100% + var(--tile-w));
+      height: 100%;
+      background-image: url('img/yachiyo/bg-fishes.webp');
+      animation: yachiyoSwim 60s linear infinite;
+    }
+
+    .yachiyo_band_top,
+    .yachiyo_band_bottom {
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: var(--band-h);
+      background: url('img/yachiyo/bg-band.webp') repeat-x;
+      background-size: var(--band-w) var(--band-h);
+    }
+
+    .yachiyo_band_top { top: 0; }
+    .yachiyo_band_bottom { bottom: 0; }
+
+    .yachiyo_coral_left,
+    .yachiyo_coral_right {
+      position: absolute;
+      bottom: var(--band-h);
+      display: block;
+      height: auto;
+    }
+
+    .yachiyo_coral_left {
+      left: 0;
+      width: calc(180px * var(--zoom));
+    }
+
+    .yachiyo_coral_right {
+      right: 0;
+      width: calc(200px * var(--zoom));
+    }
+
+    .yachiyo_mask {
+      background: #0f2c3cb3;
     }
   }
   .bar {

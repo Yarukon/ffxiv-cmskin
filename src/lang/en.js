@@ -85,6 +85,10 @@ export default {
   // Title behaviour
   title_openwiki: 'Wiki',
   title_openhistory: 'Battle History',
+  // Aetheris background
+  bg_none: 'None',
+  bg_kaguya: 'Kaguya!',
+  bg_yachiyo: 'Yachiyo!',
   // splash
   'splash.changelog': 'Changelog',
   'splash.usage': 'Usage',
@@ -166,7 +170,7 @@ export default {
   'setting.basic.titleBehaviour': 'Title Behaviour',
   'setting.basic.icon': 'Job Icons',
   'setting.basic.theme': 'Theme Settings',
-  'setting.basic.useKaguyaBg': 'Kaguya! (Aetheris Only)',
+  'setting.basic.aetherisBg': 'Background (Aetheris Only)',
   //
   'setting.basic.split.history': 'History',
   'setting.basic.historyLength': 'History Length',

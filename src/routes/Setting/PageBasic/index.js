@@ -31,7 +31,7 @@ class Overlay extends PageComponent {
     'uiMini',
     'uiAutoMini',
     'uiAutoMiniActive',
-    'useKaguyaBg',
+    'aetherisBg',
   ];
 
   state = {
@@ -55,6 +55,10 @@ class Overlay extends PageComponent {
   handleTitleBehaviourChange = value => {
     this.setState({ titleBehaviour: value});
   }
+
+  handleAetherisBgChange = value => {
+    this.setState({ aetherisBg: value });
+  };
 
   inputOnChange = (e, name, isNumber) => {
     let { value } = e.target;
@@ -133,7 +137,7 @@ class Overlay extends PageComponent {
           {SelectItem('setting.basic.titleBehaviour', ['title_openwiki', 'title_openhistory'], $.titleBehaviour, this.handleTitleBehaviourChange)}
           {SelectItem('setting.basic.icon', ['icon_default', 'icon_glow', 'icon_square'], $.iconSet, this.handleIconChange)}
           {SelectItem('setting.basic.theme', ['theme_dark', 'theme_light', 'theme_classic', 'theme_aetheris', 'theme_materialui', 'theme_yorha'], $.theme, this.handleThemeChange)}
-          {CheckItem('useKaguyaBg')}
+          {SelectItem('setting.basic.aetherisBg', ['bg_none', 'bg_kaguya', 'bg_yachiyo'], $.aetherisBg, this.handleAetherisBgChange)}
           <Split className={style.title} id="setting.basic.split.history" />
           {InputItem('historyLength')}
         </div>

@@ -18,7 +18,7 @@ const Setting = [
   'hideName',
   'lang',
   'theme',
-  'useKaguyaBg',
+  'aetherisBg',
 ];
 const State = state => getSetting(Setting, state.setting);
 
@@ -105,7 +105,7 @@ class App extends Component {
     const AppContent = $.fullscreen ? (
       [
         <ContextMenuTrigger key="menuTrigger" id="view" holdToDisplay={-1}>
-          <View transparent={$.uiTrans} isKaguyaBgActive={$.useKaguyaBg && $.theme === 'theme_aetheris'} style={{ height: '100%' }}>
+          <View transparent={$.uiTrans} bgMode={$.theme === 'theme_aetheris' ? $.aetherisBg : 'bg_none'} style={{ height: '100%' }}>
             <div className={style.fullscreenBtn} onClick={this.handleFullscreen}>
               <div className={style.fullscreenBtnInner} />
             </div>

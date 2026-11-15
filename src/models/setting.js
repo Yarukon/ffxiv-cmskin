@@ -13,7 +13,7 @@ const Setting = {
   iconSet: 'icon_default',
   theme: 'theme_dark',
   titleBehaviour: 'title_openwiki',
-  useKaguyaBg: false,
+  aetherisBg: 'bg_none',
   // Data
   graphHide: false,
   graphTime: 30,
@@ -77,6 +77,7 @@ export default {
         const Cookie = getCookie('setting');
         if (Cookie.timekey !== timekey) {
           const Data = _.assign(Setting, Cookie);
+          if (Cookie.aetherisBg === undefined && Cookie.useKaguyaBg) Data.aetherisBg = 'bg_kaguya';
           timekey = Cookie.timekey;
           window.lang = Data.lang;
           yield put({ type: 'save', payload: Data });

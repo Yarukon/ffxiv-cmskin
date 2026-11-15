@@ -3,10 +3,11 @@ import { Lang } from '../';
 import style from './index.scss';
 import { history } from '../../history';
 
-const View = ({ transparent, children, isKaguyaBgActive, ...other }) => {
+const View = ({ transparent, children, bgMode, ...other }) => {
   if (history.location.pathname.indexOf('setting') !== -1) transparent = false;
   
-  const shouldDrawKaguya = !transparent && isKaguyaBgActive;
+  const shouldDrawKaguya = !transparent && bgMode === 'bg_kaguya';
+  const shouldDrawYachiyo = !transparent && bgMode === 'bg_yachiyo';
 
   return (
     <div
@@ -16,7 +17,7 @@ const View = ({ transparent, children, isKaguyaBgActive, ...other }) => {
       })}
       {...other}>
         
-      <div className={classnames(style.inner, { [style.kaguya]: shouldDrawKaguya })}>
+      <div className={classnames(style.inner, { [style.kaguya]: shouldDrawKaguya, [style.yachiyo]: shouldDrawYachiyo })}>
         {shouldDrawKaguya && (
           <>
             <div className={style.kaguya_border} />
@@ -25,6 +26,19 @@ const View = ({ transparent, children, isKaguyaBgActive, ...other }) => {
               <img src="img/kaguya/kaguya.webp" alt="kaguya" />
             </div>
             <div className={style.view_mask} />
+          </>
+        )}
+        {shouldDrawYachiyo && (
+          <>
+            <div className={style.yachiyo_scene}>
+              <div className={style.yachiyo_bubbles} />
+              <div className={style.yachiyo_fishes} />
+              <img className={style.yachiyo_coral_left} src="img/yachiyo/coral-left.webp" alt="coral_left" />
+              <img className={style.yachiyo_coral_right} src="img/yachiyo/coral-right.webp" alt="coral_right" />
+              <div className={style.yachiyo_band_top} />
+              <div className={style.yachiyo_band_bottom} />
+            </div>
+            <div className={classnames(style.view_mask, style.yachiyo_mask)} />
           </>
         )}
 

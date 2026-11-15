@@ -85,6 +85,10 @@ export default {
   // Title behaviour
   title_openwiki: '打开Wiki',
   title_openhistory: '打开历史战斗',
+  // Aetheris background
+  bg_none: '无',
+  bg_kaguya: 'Kaguya!',
+  bg_yachiyo: 'Yachiyo!',
   // splash
   'splash.changelog': '更新说明',
   'splash.usage': '使用说明',
@@ -166,7 +170,7 @@ export default {
   'setting.basic.titleBehaviour': '标题行为',
   'setting.basic.icon': '职业图标',
   'setting.basic.theme': '主题风格',
-  'setting.basic.useKaguyaBg': 'Kaguya! (仅支持Aetheris主题)',
+  'setting.basic.aetherisBg': '背景 (仅Aetheris主题)',
   //
   'setting.basic.split.history': '历史记录',
   'setting.basic.historyLength': '历史记录条数',
