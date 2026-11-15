@@ -1,3 +1,4 @@
+@use 'sass:math';
 @import 'import';
 .view, .viewTrans {
   width: 100%;
@@ -102,6 +103,8 @@
   box-shadow: 0 -1px 0 $c-bg-dark, inset 0 -1px 0 $c-bg-light;
 }
 
+$yachiyo-tilt: 10deg;
+
 @keyframes yachiyoRise {
   to {
     transform: translateY(calc(-1 * var(--tile-h)));
@@ -112,6 +115,76 @@
   to {
     transform: translateX(calc(-1 * var(--tile-w)));
   }
+}
+
+// Character cycle, in wobble swings: rest at right (0-2), step (2-3), middle (3-4), step (4-5), rest at
+// left (5-7), step (7-8), middle (8-9), step (9-10).
+// Each step is one swing with the same easing: it leaves at one extreme, is upright and lowest at its midpoint
+// and lands on the other extreme; the middle stop waits one swing for the departure lean to come back.
+// Keep the cycle a whole number of wobble periods.
+$yc-swing: 0.9s;
+$yc-flip: 0.3s;
+$yc-cycle: $yc-swing * 10;
+$yc-pivot: 0.35; // fraction of the sprite height, from the top
+$yc-rest-h: 219px;
+$yc-sag: 12px;
+$yc-steps: (2, 100%, 47%), (4, 47%, 0%), (7, 0%, 47%), (9, 47%, 100%);
+
+@function yc-at($swings) {
+  @return percentage(math.div($swings, 10));
+}
+
+@keyframes yachiyoCharX {
+  0%, 100% { transform: translateX(100%); }
+  @each $start, $from, $to in $yc-steps {
+    #{yc-at($start)} { transform: translateX($from); animation-timing-function: ease-in-out; }
+    #{yc-at($start + 1)} { transform: translateX($to); }
+  }
+}
+
+// Shallow sag under each step
+@keyframes yachiyoCharY {
+  0%, 100% { transform: translateY(calc(#{-$yc-rest-h} * var(--zoom))); }
+  @each $start, $from, $to in $yc-steps {
+    #{yc-at($start)} { transform: translateY(calc(#{-$yc-rest-h} * var(--zoom))); animation-timing-function: ease-in-out; }
+    #{yc-at($start + 0.5)} { transform: translateY(calc(#{$yc-sag - $yc-rest-h} * var(--zoom))); animation-timing-function: ease-in-out; }
+    #{yc-at($start + 1)} { transform: translateY(calc(#{-$yc-rest-h} * var(--zoom))); }
+  }
+}
+
+// Free-running loop, phased so every arrival at the right end lands on a left-lean extreme
+@keyframes yachiyoCharWobble {
+  from { transform: rotate(-$yachiyo-tilt); }
+  to { transform: rotate($yachiyo-tilt); }
+}
+
+// Original while moving left, mirrored while moving right; turns on arriving at either end
+@keyframes yachiyoCharFlip {
+  0% { transform: scaleX(-1); animation-timing-function: ease-in-out; }
+  #{yc-at(math.div($yc-flip, $yc-swing))} { transform: scaleX(1); }
+  #{yc-at(5)} { transform: scaleX(1); animation-timing-function: ease-in-out; }
+  #{yc-at(5 + math.div($yc-flip, $yc-swing))} { transform: scaleX(-1); }
+  100% { transform: scaleX(-1); }
+}
+
+// Fish cycle 21s: 10s per leg, 0.5s turn at each end (47.62% / 97.62%)
+@keyframes yachiyoFishX {
+  0% { transform: translateX(0); animation-timing-function: ease-in-out; }
+  47.62% { transform: translateX(100%); }
+  50% { transform: translateX(100%); animation-timing-function: ease-in-out; }
+  97.62% { transform: translateX(0); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes yachiyoFishFlip {
+  0%, 47.62% { transform: scaleX(1); }
+  50%, 97.62% { transform: scaleX(-1); }
+  100% { transform: scaleX(1); }
+}
+
+@keyframes yachiyoJellyBob {
+  from { transform: translateY(calc(-187px * var(--zoom))); }
+  to { transform: translateY(0); }
 }
 
 @keyframes flip24fps {
@@ -256,6 +329,14 @@
       --band-w: calc(48px * var(--zoom));
       --tile-w: calc(960px * var(--zoom));
       --tile-h: calc(450px * var(--zoom));
+      --coral-l-w: calc(180px * var(--zoom));
+      --coral-r-w: calc(200px * var(--zoom));
+      --char-w: calc(285px * var(--zoom));
+      --char-h: calc(303px * var(--zoom));
+      --fish-w: calc(86px * var(--zoom));
+      --fish-h: calc(81px * var(--zoom));
+      --jelly-w: calc(98px * var(--zoom));
+      --jelly-h: calc(86px * var(--zoom));
 
       background: #83ded5;
     }
@@ -319,12 +400,88 @@
 
     .yachiyo_coral_left {
       left: 0;
-      width: calc(180px * var(--zoom));
+      width: var(--coral-l-w);
     }
 
     .yachiyo_coral_right {
       right: 0;
-      width: calc(200px * var(--zoom));
+      width: var(--coral-r-w);
+    }
+
+    .yachiyo_jellyfish {
+      position: absolute;
+      left: calc(19% - var(--jelly-w) / 2);
+      bottom: calc(94px * var(--zoom) - var(--jelly-h) / 2);
+      display: block;
+      width: var(--jelly-w);
+      height: auto;
+      animation: yachiyoJellyBob 4s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+
+    // Track spans the gap between the corals; translateX(100%) of its own width reaches the right coral
+    .yachiyo_fish_track {
+      position: absolute;
+      left: var(--coral-l-w);
+      bottom: calc(112px * var(--zoom) - var(--fish-h) / 2);
+      width: max(0px, calc(100% - var(--coral-l-w) - var(--coral-r-w) - var(--fish-w)));
+      height: var(--fish-h);
+      animation: yachiyoFishX 21s infinite;
+      will-change: transform;
+    }
+
+    .yachiyo_fish {
+      position: absolute;
+      top: 0;
+      left: 0;
+      display: block;
+      width: var(--fish-w);
+      height: auto;
+      animation: yachiyoFishFlip 21s infinite;
+    }
+
+    // Track moves the path point horizontally, bob vertically; wobble (pose) and flip (img) pivot on it.
+    // All four share one clock; the negative delay skips the end-turn so the first frame is unflipped.
+    .yachiyo_char_track {
+      position: absolute;
+      left: calc(var(--char-w) * 0.6);
+      bottom: 0;
+      width: calc(100% - var(--char-w) * 1.2);
+      height: 0;
+      animation: yachiyoCharX $yc-cycle linear infinite;
+      animation-delay: -$yc-flip;
+      will-change: transform;
+
+      @media (max-width: 520px) { display: none; }
+    }
+
+    .yachiyo_char_bob {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      animation: yachiyoCharY $yc-cycle infinite;
+      animation-delay: -$yc-flip;
+      will-change: transform;
+    }
+
+    .yachiyo_char_pose {
+      position: absolute;
+      left: calc(var(--char-w) / -2);
+      bottom: calc(var(--char-h) * #{$yc-pivot - 1});
+      width: var(--char-w);
+      transform-origin: 50% percentage($yc-pivot);
+      animation: yachiyoCharWobble $yc-swing ease-in-out infinite alternate;
+      animation-delay: -$yc-flip;
+      will-change: transform;
+    }
+
+    .yachiyo_char {
+      display: block;
+      width: 100%;
+      height: auto;
+      transform-origin: 50% percentage($yc-pivot);
+      animation: yachiyoCharFlip $yc-cycle infinite;
+      animation-delay: -$yc-flip;
     }
 
     .yachiyo_mask {

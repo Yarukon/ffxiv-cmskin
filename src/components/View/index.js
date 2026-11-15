@@ -37,6 +37,17 @@ const View = ({ transparent, children, bgMode, ...other }) => {
               <img className={style.yachiyo_coral_right} src="img/yachiyo/coral-right.webp" alt="coral_right" />
               <div className={style.yachiyo_band_top} />
               <div className={style.yachiyo_band_bottom} />
+              <img className={style.yachiyo_jellyfish} src="img/yachiyo/jellyfish.webp" alt="jellyfish" />
+              <div className={style.yachiyo_fish_track}>
+                <img className={style.yachiyo_fish} src="img/yachiyo/fish.webp" alt="fish" />
+              </div>
+              <div className={style.yachiyo_char_track}>
+                <div className={style.yachiyo_char_bob}>
+                  <div className={style.yachiyo_char_pose}>
+                    <img className={style.yachiyo_char} src="img/yachiyo/character.webp" alt="yachiyo" />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className={classnames(style.view_mask, style.yachiyo_mask)} />
           </>

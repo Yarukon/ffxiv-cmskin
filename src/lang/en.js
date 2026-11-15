@@ -1,5 +1,6 @@
 const Splash = {
   changelog: [
+    '|2026.11.15|v2.4.5|Add Yachiyo background (Aetheris only); the Kaguya toggle is now a background dropdown.|',
     '|2026.09.09|v2.4.4|Add Job icon and i18n for Beastmaster.',
     '|2026.02.22|v2.4.3|Add Cosmic Princess Kaguya!|',
     '|2026.02.12|v2.4.2|Add Add quick action button in bottom right corner.|',
