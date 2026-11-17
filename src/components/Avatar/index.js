@@ -8,7 +8,8 @@ const jellyStyle = rate => {
   return { animationDuration: 0.5 / bounce + 's' };
 };
 
-// Anchor the bounce to the page clock so icons mounted at different times stay in phase.
+// Anchor the bounce to the page clock so icons stay in phase; re-run on animationstart
+// because moving a node (list re-sort) restarts its CSS animation.
 const syncJelly = el => {
   if (el && el.getAnimations) el.getAnimations().forEach(a => { a.startTime = 0; });
 };
@@ -32,7 +33,7 @@ export default ({ size = '2.5rem', deaths = 0, job, diy, iconSet = "icon_default
   return (
     <div className={style.avatar} style={avatarStyle}>
       {deaths > 0 ? <div className={style.deaths}>✗{deaths}</div> : null}
-      {jelly ? <div className={style.jelly} style={jellyStyle(jellyRate)} ref={syncJelly}>{Img}</div> : Img}
+      {jelly ? <div className={style.jelly} style={jellyStyle(jellyRate)} ref={syncJelly} onAnimationStart={e => syncJelly(e.currentTarget)}>{Img}</div> : Img}
     </div>
   );
 };
