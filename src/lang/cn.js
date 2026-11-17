@@ -1,5 +1,6 @@
 const Splash = {
   changelog: [
+    '|2026.11.17|v2.4.6|Add 职业图标Q弹效果 (设置-界面-保持Q弹!), 可调节速度.|',
     '|2026.11.15|v2.4.5|Add 八千代背景 (仅Aetheris主题), Kaguya开关改为背景模式下拉选项.|',
     '|2026.09.09|v2.4.4|Add 驯兽师职业图标与i18n文本.',
     '|2026.02.22|v2.4.3|Add 超时空辉夜姬!|',
@@ -172,6 +173,7 @@ export default {
   'setting.basic.icon': '职业图标',
   'setting.basic.theme': '主题风格',
   'setting.basic.aetherisBg': '背景 (仅Aetheris主题)',
+  'setting.basic.jelly': '保持Q弹! (次/秒)',
   //
   'setting.basic.split.history': '历史记录',
   'setting.basic.historyLength': '历史记录条数',

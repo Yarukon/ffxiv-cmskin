@@ -17,7 +17,9 @@ const Setting = [
   'detailDamage',
   'detailHeal',
   'detailTank',
-  'iconSet'
+  'iconSet',
+  'jelly',
+  'jellyRate',
 ];
 const State = state => {
   const act = state.act.encounterDatas[state.setting.historyPage];
@@ -112,7 +114,7 @@ const Detail = $ => {
 
   return [
     <Header key="header" className={style.header}>
-      <Avatar size={$.uiMini ? '1.5rem' : '3rem'} deaths={Data.healing.deaths} job={MyImg} iconSet={$.iconSet} />
+      <Avatar size={$.uiMini ? '1.5rem' : '3rem'} deaths={Data.healing.deaths} job={MyImg} iconSet={$.iconSet} jelly={$.jelly} jellyRate={$.jellyRate} />
       <div>
         <div className={style.name}>{MyName}</div>
         {FullHeader}

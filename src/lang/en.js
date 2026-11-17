@@ -1,5 +1,6 @@
 const Splash = {
   changelog: [
+    '|2026.11.17|v2.4.6|Add bouncy job icons (Settings > GUI > Stay Bouncy!) with adjustable speed.|',
     '|2026.11.15|v2.4.5|Add Yachiyo background (Aetheris only); the Kaguya toggle is now a background dropdown.|',
     '|2026.09.09|v2.4.4|Add Job icon and i18n for Beastmaster.',
     '|2026.02.22|v2.4.3|Add Cosmic Princess Kaguya!|',
@@ -172,6 +173,7 @@ export default {
   'setting.basic.icon': 'Job Icons',
   'setting.basic.theme': 'Theme Settings',
   'setting.basic.aetherisBg': 'Background (Aetheris Only)',
+  'setting.basic.jelly': 'Stay Bouncy! (per sec)',
   //
   'setting.basic.split.history': 'History',
   'setting.basic.historyLength': 'History Length',

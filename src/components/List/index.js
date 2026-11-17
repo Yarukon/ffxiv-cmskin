@@ -34,7 +34,9 @@ const Setting = [
   'qtOverHealLow',
   'qtUp',
   'qtDown',
-  'iconSet'
+  'iconSet',
+  'jelly',
+  'jellyRate',
 ];
 
 const State = state => getSetting(Setting, state.setting);
@@ -169,6 +171,8 @@ const ListView = ({ tab, chart, item, firstItem, hasDps, avps, isBattle, ...$ })
           diy={$.imgActive && item.isMy}
           size={$.uiMini ? '1.5rem' : '2.5rem'}
           iconSet={$.iconSet}
+          jelly={$.jelly}
+          jellyRate={$.jellyRate}
         />
         <div className={style.header}>
           <div key="name" className={style.name}>

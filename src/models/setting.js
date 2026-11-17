@@ -14,6 +14,8 @@ const Setting = {
   theme: 'theme_dark',
   titleBehaviour: 'title_openwiki',
   aetherisBg: 'bg_none',
+  jelly: false,
+  jellyRate: 1.1,
   // Data
   graphHide: false,
   graphTime: 30,

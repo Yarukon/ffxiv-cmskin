@@ -32,6 +32,8 @@ class Overlay extends PageComponent {
     'uiAutoMini',
     'uiAutoMiniActive',
     'aetherisBg',
+    'jelly',
+    'jellyRate',
   ];
 
   state = {
@@ -134,6 +136,7 @@ class Overlay extends PageComponent {
           <Split className={style.title} id="setting.basic.split.gui" />
           {CheckItem('uiAutoMiniActive', 'uiAutoMini')}
           {CheckItem('uiScaleActive', 'uiScale')}
+          {CheckItem('jelly', 'jellyRate')}
           {SelectItem('setting.basic.titleBehaviour', ['title_openwiki', 'title_openhistory'], $.titleBehaviour, this.handleTitleBehaviourChange)}
           {SelectItem('setting.basic.icon', ['icon_default', 'icon_glow', 'icon_square'], $.iconSet, this.handleIconChange)}
           {SelectItem('setting.basic.theme', ['theme_dark', 'theme_light', 'theme_classic', 'theme_aetheris', 'theme_materialui', 'theme_yorha'], $.theme, this.handleThemeChange)}
